@@ -1,0 +1,10 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="referrer" content="no-referrer"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Click Simulator account linking</title>
+<style>body{max-width:38em;margin:12vh auto;padding:1em;font:18px system-ui}input,button{padding:.7em;font:inherit}input{width:85%}</style>
+<h1>Link your Roblox account</h1><p id="note">Start /link roblox in Discord to connect your account.</p><section hidden><input aria-label="Private confirmation" readonly><button>Copy confirmation</button></section>
+<script>
+const params=new URLSearchParams(location.search),state=params.get("state"),code=params.get("code");
+history.replaceState(null,"",location.pathname);
+if(state&&code){document.querySelector("#note").textContent="In your own Discord request click Finish linking and paste this confirmation within one minute. Keep it private.";
+const field=document.querySelector("input");field.value=state+" "+code;document.querySelector("section").hidden=false;
+document.querySelector("button").onclick=async()=>{field.select();try{await navigator.clipboard.writeText(field.value);document.querySelector("button").textContent="Copied"}catch{field.focus()}}}
+</script></html>
